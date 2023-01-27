@@ -38,6 +38,7 @@ jobs:
             - v1-dependencies-
 
       - run: composer update
+
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
@@ -54,7 +55,7 @@ jobs:
 
       # prepare the database
       - run: touch storage/testing.sqlite
-      - run: php artisan migrate
+      - run: php artisan migrate -force
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
